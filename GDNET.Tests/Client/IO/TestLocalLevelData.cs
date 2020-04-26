@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -15,7 +16,7 @@ namespace GDNET.Tests.Client.IO
 {
     public class TestLocalLevelManager
     {
-        private LocalLevelManager _llm = new LocalLevelManager(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "GeometryDash") + Path.DirectorySeparatorChar + "CCLocalLevels.dat");
+        private LocalLevelManager _llm = new LocalLevelManager(ConfigurationManager.AppSettings["LocalLevelData"]);
 
         [Test]
         public void TestDecoding()
