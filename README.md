@@ -28,4 +28,6 @@ While we don't (yet) have a specific set of standards for contributions, we woul
 **Disclaimer**: A lot of the tests in the `GDNET.Tests` namespace require definitions dependant on certain files, so if certain tests fail (more notably the client-wise ones), then this is why.
 
 ## License
-The codebase and overall project is licensed under the [MIT License](https://opensource.org/licenses/MIT). For more information on the licensing, please view the [LICENSE file](https://github.com/Homurasama/GDNETPrivate/blob/master/LICENSE).
+The codebase and overall project is licensed under the [MIT License](https://opensource.org/licenses/MIT). For more information on the licensing, please view the [LICENSE file](https://github.com/GDdotNET/GDNET/blob/master/LICENSE).
+
+All rights to [Geometry Dash](http://robtopgames.com) and its assets are reserved to [RobTopGames AB](http://robtopgames.com), and its collaborators (if any)
