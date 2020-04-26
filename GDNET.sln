@@ -11,8 +11,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GDNET.Client", "GDNET.Clien
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GDNET.Extensions", "GDNET.Extensions\GDNET.Extensions.csproj", "{129B8B37-F391-41F6-8F02-95BDE7A101C8}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GDNET.Memory", "GDNET.Memory\GDNET.Memory.vcxproj", "{3AD03450-C1FE-41E5-964F-8F851C1F2A0D}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Git Files", "Git Files", "{84FA9EED-2609-4A73-99CC-C8EB77E26A8A}"
 EndProject
 Global
@@ -72,16 +70,6 @@ Global
 		{129B8B37-F391-41F6-8F02-95BDE7A101C8}.Release|x64.Build.0 = Release|Any CPU
 		{129B8B37-F391-41F6-8F02-95BDE7A101C8}.Release|x86.ActiveCfg = Release|Any CPU
 		{129B8B37-F391-41F6-8F02-95BDE7A101C8}.Release|x86.Build.0 = Release|Any CPU
-		{3AD03450-C1FE-41E5-964F-8F851C1F2A0D}.Debug|Any CPU.ActiveCfg = Debug|Win32
-		{3AD03450-C1FE-41E5-964F-8F851C1F2A0D}.Debug|x64.ActiveCfg = Debug|x64
-		{3AD03450-C1FE-41E5-964F-8F851C1F2A0D}.Debug|x64.Build.0 = Debug|x64
-		{3AD03450-C1FE-41E5-964F-8F851C1F2A0D}.Debug|x86.ActiveCfg = Debug|Win32
-		{3AD03450-C1FE-41E5-964F-8F851C1F2A0D}.Debug|x86.Build.0 = Debug|Win32
-		{3AD03450-C1FE-41E5-964F-8F851C1F2A0D}.Release|Any CPU.ActiveCfg = Release|Win32
-		{3AD03450-C1FE-41E5-964F-8F851C1F2A0D}.Release|x64.ActiveCfg = Release|x64
-		{3AD03450-C1FE-41E5-964F-8F851C1F2A0D}.Release|x64.Build.0 = Release|x64
-		{3AD03450-C1FE-41E5-964F-8F851C1F2A0D}.Release|x86.ActiveCfg = Release|Win32
-		{3AD03450-C1FE-41E5-964F-8F851C1F2A0D}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
