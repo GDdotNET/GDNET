@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -16,7 +15,7 @@ namespace GDNET.Tests.Client.IO
 {
     public class TestLocalLevelManager
     {
-        private LocalLevelManager _llm = new LocalLevelManager(ConfigurationManager.AppSettings["LocalLevelData"]);
+        private LocalLevelManager _llm = new LocalLevelManager(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "GeometryDash") + Path.DirectorySeparatorChar + "CCLocalLevels.dat");
 
         [Test]
         public void TestDecoding()
@@ -25,7 +24,7 @@ namespace GDNET.Tests.Client.IO
 
             LocalLevel level = _llm.Levels[0];
 
-            Assert.AreEqual("aba", level.Name, "Not equal");
+            Assert.AreEqual("GDNET Moment", level.Name, "Not equal");
         }
 
         [Test]
