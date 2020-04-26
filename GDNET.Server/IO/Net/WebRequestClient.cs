@@ -22,19 +22,17 @@ namespace GDNET.Server.IO.Net
         private static readonly HttpClient client = new HttpClient();
 
         /// <summary>
+        /// Web request client options.
+        /// </summary>
+        public class WebRequestClientOptions
+        {
+            public bool IgnoreGdExceptions { get; set; } = false;
+        }
+
+        /// <summary>
         /// Options to the web client.
         /// </summary>
         public WebRequestClientOptions Options = new WebRequestClientOptions();
-
-        public WebRequestClient()
-        {
-
-        }
-        
-        public WebRequestClient(WebRequestClientOptions options)
-        {
-            Options = options;
-        }
 
         /// <summary>
         /// Sends the HTTP request in the current queue, if any.
@@ -95,7 +93,6 @@ namespace GDNET.Server.IO.Net
             {
                 using (HttpResponseMessage response = await client.SendAsync(setupRequest))
                 {
-
                     result = await response.Content.ReadAsStringAsync();
                     
                     if (int.TryParse(result, out int errorCode) == true && options.IgnoreGdExceptions == false)
@@ -114,18 +111,5 @@ namespace GDNET.Server.IO.Net
         {
             pendingRequests.Enqueue(webRequest);
         }
-
-        public static string GetLocalIp()
-        {
-            return new WebClient().DownloadString("http://ipinfo.io/ip");
-        }
-    }
-
-    /// <summary>
-    /// Web request client options.
-    /// </summary>
-    public class WebRequestClientOptions
-    {
-        public bool IgnoreGdExceptions { get; set; } = false;
     }
 }

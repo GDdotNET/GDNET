@@ -25,5 +25,7 @@ Good ideas on what to contribute can be found on the [list of opened issues](htt
 
 While we don't (yet) have a specific set of standards for contributions, we would appreciate those who wish to contribute to always make their tests with the project in the `GDNET.Tests` namespace, in its proper folder. If any issues with the codebase or its general compositon arise, the GDNET development team appreciates all feedback to such.
 
+**Disclaimer**: A lot of the tests in the `GDNET.Tests` namespace require definitions dependant on certain files, so if certain tests fail (more notably the client-wise ones), then this is why.
+
 ## License
 The codebase and overall project is licensed under the [MIT License](https://opensource.org/licenses/MIT). For more information on the licensing, please view the [LICENSE file](https://github.com/Homurasama/GDNETPrivate/blob/master/LICENSE).

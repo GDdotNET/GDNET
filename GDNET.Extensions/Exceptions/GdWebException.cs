@@ -16,11 +16,6 @@ namespace GDNET.Exceptions
         /// </summary>
         public GdErrorType ErrorType;
 
-        public GdWebException()
-        {
-
-        }
-
         public GdWebException(string message)
             : base(message)
         {

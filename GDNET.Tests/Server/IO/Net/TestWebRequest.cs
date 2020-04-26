@@ -13,7 +13,7 @@ namespace GDNET.Tests.Server.IO.Net
     {
         private WebRequestClient client = new WebRequestClient()
         {
-            Options = new WebRequestClientOptions()
+            Options = new WebRequestClient.WebRequestClientOptions()
             {
                 IgnoreGdExceptions = true
             }
@@ -43,12 +43,12 @@ namespace GDNET.Tests.Server.IO.Net
             {
                 Url = @"http://boomlings.com/database/accounts/loginGJAccount.php",
                 Method = HttpMethod.Post
-            }, new WebRequestClientOptions()
+            }, new WebRequestClient.WebRequestClientOptions()
             {
                 IgnoreGdExceptions = true
             });
 
-            Assert.AreEqual(funky, "-1", "HTTP Requests are working.");}
-        
+            Assert.AreEqual(funky, "-1", "HTTP Requests are working.");
+        }
     }
 }

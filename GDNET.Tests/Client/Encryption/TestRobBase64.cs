@@ -50,6 +50,5 @@ namespace GDNET.Tests.Client.Encryption
 
             File.WriteAllBytes(Path.Combine(Directory.GetCurrentDirectory(), "test.xml"), gzipb64);
         }
-        
     }
 }

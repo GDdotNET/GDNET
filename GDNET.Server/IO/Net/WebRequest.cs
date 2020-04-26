@@ -31,15 +31,5 @@ namespace GDNET.Server.IO.Net
         /// The HTTP method of the request.
         /// </summary>
         public HttpMethod Method { get; set; } = HttpMethod.Post;
-
-        public WebRequest()
-        {
-
-        }
-
-        public WebRequest(HttpContent content)
-        {
-            Content = content;
-        }
     }
 }

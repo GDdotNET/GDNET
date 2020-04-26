@@ -62,7 +62,6 @@ namespace GDNET.Client.IO
                 byte[] buffer = new byte[4096];
                 int count;
 
-
                 using (memory = new MemoryStream())
                     while ((count = gZipStream.Read(buffer, 0, 4096)) > 0)
                         memory.Write(buffer, 0, count);

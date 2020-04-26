@@ -43,7 +43,7 @@ namespace GDNET.Client.Data
         }
 
         #region Private Methods
-        private void ParseColours()
+        /*private void ParseColours()
         {
             
         }
@@ -51,7 +51,7 @@ namespace GDNET.Client.Data
         private void ParseSettings()
         {
             
-        }
+        }*/
         
         private void ParseObjects()
         {
@@ -62,7 +62,6 @@ namespace GDNET.Client.Data
                 LevelObjects.Add(Object.Parse(obj));
         }
         #endregion
-
 
         #region Static Methods
         /// <summary>

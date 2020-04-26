@@ -24,7 +24,7 @@ namespace GDNET.Tests.Client.IO
 
             LocalLevel level = _llm.Levels[0];
 
-            Assert.AreEqual("GDNET Moment", level.Name, "Not equal");
+            Assert.AreEqual("GDNET Big Brain", level.Name, "Not equal");
         }
 
         [Test]
@@ -39,7 +39,7 @@ namespace GDNET.Tests.Client.IO
             var textObject = parsedLevel.LevelObjects.FirstOrDefault(o => o.Id == 914) as TextObject;
 
             Assert.AreEqual(parsedLevel.LevelObjects.Count, 9);
-            Assert.AreEqual(solidObjects.ToArray().Length, 6);
+            Assert.AreEqual(solidObjects.ToArray().Length, 9);
             Assert.AreEqual(textObject?.Text, "boring af level");
         }
     }
