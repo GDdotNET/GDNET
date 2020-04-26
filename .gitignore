@@ -1,0 +1,20 @@
+# Base VS files
+.idea/*
+.git/*
+.vs/*
+
+# Build
+[Dd]ebug/
+[Dd]ebugPublic/
+
+[Rr]elease/
+[Rr]eleases/
+
+bld/
+[Bb]in/
+[Oo]bj/
+
+[Ll]og/
+
+# Packages
+[Pp]ackages/
