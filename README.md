@@ -1,4 +1,4 @@
-![GDNET Logo](hhttps://github.com/GDdotNET/GDNETPrivate/blob/master/assets/GDNET-Logo-1.png?raw=true)
+![GDNET Logo](https://github.com/GDdotNET/GDNET/blob/master/assets/GDNET-Logo-1.png?raw=trueraw=tru)
 # GDNET
 ##### An ambitious attempt at a general interfacing library for the Geometry Dash servers, and it's client.
 
