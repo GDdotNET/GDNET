@@ -1,7 +1,7 @@
 ![GDNET Logo](https://github.com/GDdotNET/GDNET/blob/master/assets/GDNET-Logo-1.png?raw=trueraw=tru)
 # GDNET
 ##### An ambitious attempt at a general interfacing library for the Geometry Dash servers, and it's client.
-
+[![Build status](https://ci.appveyor.com/api/projects/status/6et45t95wb0503qp?svg=true)](https://ci.appveyor.com/project/GDdotNET/gdnet-xqlm4) [![Travis](https://travis-ci.com/GDdotNET/GDNET.svg?branch=master)](https://travis-ci.com/github/GDdotNET/GDNET)
 ----
 
 **GDNET** is a C# project that runs to make working with the [Geometry Dash](http://robtopgames.com) servers, it's data and values easier, along with adding client-sided features that interface with it's general data.
