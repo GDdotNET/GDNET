@@ -15,7 +15,7 @@ This wrapper aims to take control of data from Geometry Dash and make manipulati
 ## Building
 GDNET can be built for multiple platforms, primarily depending on IDE, and compilation method. Most IDE's will provide an option to Build the instance you have of GDNET, and it's usage is preferred for testing. Compiling and running tests on the `GDNET.Tests` workspace are reccomended, as they contain instances to test all possible aspects of the GDNET library, excluding the ones that are tested alongside other modules of the wrapper.
 ### Requirements
-* A platform with the [.NET Cre 3.1 SDK](https://dotnet.microsoft.com/download/dotnet-core), or above installed.
+* A platform with the [.NET Core 3.1 SDK](https://dotnet.microsoft.com/download/dotnet-core), or above installed.
 * An IDE, such as [JetBrains Rider](https://www.jetbrains.com/rider/), or [Visual Studio 2019](https://visualstudio.microsoft.com/) and above, that include a sustainable syntax highlighter and intellisense for easier workability with the GDNET codebase.
 
 ## Contributing
