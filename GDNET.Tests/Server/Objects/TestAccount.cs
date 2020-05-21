@@ -10,7 +10,7 @@ namespace GDNET.Tests.Server.Objects
         {
             var acc = Account.Get(7361923);
 
-            Assert.AreEqual(acc.Username, "Ryuuhou", "Usernames are not the same.");
+            Assert.AreEqual(acc.Username, "Mikotawa", "Usernames are not the same.");
         }
 
         [Test]
