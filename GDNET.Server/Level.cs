@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Net.Http;
-using System.Security;
 using GDNET.Extensions;
 using GDNET.Extensions.Attributes;
 using GDNET.Extensions.Serialization;
@@ -38,7 +37,7 @@ namespace GDNET.Server
             public int Page { get; set; } = 0;
 
             /// <summary>
-            /// A custom song ID for Newgrounds, cannot be used with <see cref="LevelSearchOptions.Song"/>.
+            /// A custom song ID for Newgrounds, cannot be used with <see cref="LevelSearchOptions.Song" />.
             /// </summary>
             public int CustomSongId { get; set; } = 0;
 
@@ -51,7 +50,7 @@ namespace GDNET.Server
             /// Filter for two-player levels.
             /// </summary>
             public bool TwoPlayer { get; set; } = false;
-            
+
             /// <summary>
             /// Filter for featured levels.
             /// </summary>
@@ -75,7 +74,7 @@ namespace GDNET.Server
             /// <summary>
             /// Filter for level difficultues.
             /// </summary>
-            public Difficulty[] Difficulty { get; set; } = {};
+            public Difficulty[] Difficulty { get; set; } = { };
 
             /// <summary>
             /// Filter for level lengths.
@@ -83,7 +82,7 @@ namespace GDNET.Server
             public Length[] Length { get; set; } = { };
 
             /// <summary>
-            /// Filter for levels that use official game songs, cannot be used with <see cref="LevelSearchOptions.CustomSongId"/>.
+            /// Filter for levels that use official game songs, cannot be used with <see cref="LevelSearchOptions.CustomSongId" />.
             /// </summary>
             public GameSong Song { get; set; } = GameSong.None;
 
@@ -114,44 +113,41 @@ namespace GDNET.Server
         /// <param name="options">Level search options.</param>
         /// <returns>The array.</returns>
         public static Level[] GetLevels(string search = "", LevelSearchOptions options = null)
-
         {
             if (options == null)
                 options = new LevelSearchOptions();
 
-            Dictionary<string, string> content = new Dictionary<string, string>();
-
-            content = new Dictionary<string, string>
+            var content = new Dictionary<string, string>
             {
-                {"gameVersion", "21"},
-                {"binaryVersion", "35"},
+                { "gameVersion", "21" },
+                { "binaryVersion", "35" },
 
-                {"type", ((int) options.SearchType).ToString()},
+                { "type", ((int)options.SearchType).ToString() },
                 { "str", search },
 
-                {"len", (options.Length.Length > 0) ? options.Length.FormatEnum(",") : "-"},
-                {"diff", (options.Difficulty.Length > 0) ? options.Difficulty.FormatEnum(",") : "-"},
+                { "len", options.Length.Length > 0 ? options.Length.FormatEnum(",") : "-" },
+                { "diff", options.Difficulty.Length > 0 ? options.Difficulty.FormatEnum(",") : "-" },
 
-                {"coins", Convert.ToInt32(options.HasCoins).ToString()},
+                { "coins", Convert.ToInt32(options.HasCoins).ToString() },
                 { "noStar", Convert.ToInt32(options.IsUnrated).ToString() },
-                { "twoPlayer", Convert.ToInt32(options.TwoPlayer).ToString()},
+                { "twoPlayer", Convert.ToInt32(options.TwoPlayer).ToString() },
                 { "featured", Convert.ToInt32(options.Featured).ToString() },
                 { "epic", Convert.ToInt32(options.Epic).ToString() },
                 { "original", Convert.ToInt32(options.Original).ToString() },
 
-                {"secret", "Wmfd2893gb7"}
+                { "secret", "Wmfd2893gb7" }
             };
 
             // extraneous/optional params
             if (options.DemonType != DemonType.None)
             {
                 content["diff"] = "-2";
-                content.Add("demonFilter", ((int) options.DemonType).ToString());
+                content.Add("demonFilter", ((int)options.DemonType).ToString());
             }
 
             if (options.CustomSongId > 0 && options.Song > 0)
                 throw new ArgumentException("You may not use NewGrounds Song ID's and In-game Song enums at once.");
-            
+
             if (options.CustomSongId > 0 || options.Song > 0)
             {
                 if (options.CustomSongId > 0)
@@ -160,13 +156,13 @@ namespace GDNET.Server
                     content.Add("song", ((int)options.Song).ToString());
             }
 
-            string result = WebRequestClient.SendRequest(new WebRequest
+            var result = WebRequestClient.SendRequest(new WebRequest
             {
                 Url = "http://boomlings.com/database/getGJLevels21.php",
                 Content = new FormUrlEncodedContent(content)
             });
 
-            List<Level> levels = RobtopAnalyzer.DeserializeObjectList<Level>(result.Split("#")[0]);
+            var levels = RobtopAnalyzer.DeserializeObjectList<Level>(result.Split("#")[0]);
 
             return levels.ToArray();
         }
@@ -206,16 +202,16 @@ namespace GDNET.Server
     {
         Auto = -3,
         Demon = -2,
-        NA = -1,
+        Na = -1,
         Easy = 1,
         Normal = 2,
         Hard = 3,
         Harder = 4,
-        Insane = 5,
+        Insane = 5
     }
 
     /// <summary>
-    ///  An enum of the demon types.
+    /// An enum of the demon types.
     /// </summary>
     public enum DemonType
     {
@@ -230,7 +226,8 @@ namespace GDNET.Server
     /// <summary>
     /// An enum of the lengths of levels.
     /// </summary>
-    public enum Length {
+    public enum Length
+    {
         None = -1,
         Tiny,
         Short,

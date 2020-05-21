@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
-using System.Text;
 using GDNET.Client.Attributes;
-using GDNET.Client.Objects.Special;
 
 namespace GDNET.Client.Objects
 {
@@ -15,7 +14,7 @@ namespace GDNET.Client.Objects
         /// <summary>
         /// The id of the object, or what GD parses it as.
         /// </summary>
-        [LevelObjectAttribute("1")]
+        [LevelObjectAttribute]
         public int Id { get; set; }
 
         /// <summary>
@@ -45,15 +44,15 @@ namespace GDNET.Client.Objects
 
             var separated = objString.Split(',');
 
-            for (int i = 0; i < separated.Length - 1;) // we want to manually increment the index count in the loop.
+            for (var i = 0; i < separated.Length - 1;) // we want to manually increment the index count in the loop.
             {
                 var key = separated[i];
                 var val = separated[++i];
-                
+
                 result.Add(key, val);
                 i++;
             }
-            
+
             var obj = new Object();
 
             // Let's see if there's any inherited type with the same ID.
@@ -62,8 +61,8 @@ namespace GDNET.Client.Objects
             foreach (var domain in AppDomain.CurrentDomain.GetAssemblies())
             {
                 var types = domain.GetTypes()
-                   .Where(t => t.IsSubclassOf(typeof(Object)) && !t.IsAbstract);
-                
+                    .Where(t => t.IsSubclassOf(typeof(Object)) && !t.IsAbstract);
+
                 derivedTypes.AddRange(types);
             }
 
@@ -72,25 +71,24 @@ namespace GDNET.Client.Objects
                 var attrs = type.GetCustomAttributes(false);
 
                 foreach (var attr in attrs)
-                {
                     if (attr is LevelObjectAttribute objAttr)
                     {
                         result.TryGetValue("1", out var idObj);
 
                         if (idObj != null && objAttr.Id == idObj.ToString())
-                            obj = (Object) Activator.CreateInstance(type);
+                            obj = (Object)Activator.CreateInstance(type);
                     }
-                }
             }
 
-            var props = obj.GetType().GetProperties();
+            var props = obj?.GetType().GetProperties();
+
+            Debug.Assert(props != null, nameof(props) + " != null");
 
             foreach (var prop in props)
             {
                 var attrs = prop.GetCustomAttributes(false);
 
                 foreach (var attr in attrs)
-                {
                     if (attr is LevelObjectAttribute objAttr)
                     {
                         result.TryGetValue(objAttr.Id, out var toSet);
@@ -107,10 +105,9 @@ namespace GDNET.Client.Objects
 
                             throw;
                         }
-                        
+
                         prop.SetValue(obj, changedType);
                     }
-                }
             }
 
             return obj;

@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Text;
-using GDNET.Extensions;
 
-namespace GDNET.Exceptions
+namespace GDNET.Extensions.Exceptions
 {
     /// <summary>
     /// An exception from the GD servers. Will provide a message explaining the error code.
@@ -19,7 +16,6 @@ namespace GDNET.Exceptions
         public GdWebException(string message)
             : base(message)
         {
-
         }
     }
 
@@ -29,6 +25,6 @@ namespace GDNET.Exceptions
     public enum GdErrorType
     {
         [Description("The request data provided is most likely invalid.")]
-        Invalid = -1,
+        Invalid = -1
     }
 }

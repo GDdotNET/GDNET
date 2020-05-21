@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
-using GDNET.Extensions;
 using GDNET.Extensions.Attributes;
 
 namespace GDNET.Extensions.Serialization
@@ -57,8 +55,8 @@ namespace GDNET.Extensions.Serialization
                         try
                         {
                             if (type.GetTypeInfo().IsEnum && toSet != null)
-                                changedType = Enum.ToObject(type, Int32.Parse(toSet.ToString()));
-                            else if (int.TryParse(toSet.ToString(), out int toNumber) == true)
+                                changedType = Enum.ToObject(type, int.Parse(toSet.ToString() ?? string.Empty));
+                            else if (int.TryParse(toSet?.ToString(), out var toNumber))
                                 changedType = Convert.ChangeType(toNumber, type);
                             else if (toSet != null)
                                 changedType = Convert.ChangeType(toSet, type);
@@ -80,7 +78,7 @@ namespace GDNET.Extensions.Serialization
 
             return t;
         }
-        
+
         public static List<T> DeserializeObjectList<T>(string value, char charToSplit = ':', char charToAddToList = '|')
             where T : new()
         {
@@ -91,7 +89,7 @@ namespace GDNET.Extensions.Serialization
             listValues.ForEach(v =>
             {
                 var dictionary = new Dictionary<int, object>();
-                
+
                 var seperated = v.Split(charToSplit);
 
                 for (var i = 0; i < seperated.Length - 1;) // we want to skip by 2 in order to skip the value.
@@ -111,7 +109,7 @@ namespace GDNET.Extensions.Serialization
 
                     i++;
                 }
-                
+
                 list.Add(dictionary);
             });
 
@@ -122,7 +120,7 @@ namespace GDNET.Extensions.Serialization
             list.ForEach(dictionary =>
             {
                 var type = new T();
-                
+
                 var props = type.GetType().GetProperties();
 
                 foreach (var prop in props)
@@ -158,7 +156,7 @@ namespace GDNET.Extensions.Serialization
                         }
                     }
                 }
-                
+
                 listType.Add(type);
             });
 

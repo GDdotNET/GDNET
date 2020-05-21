@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Text;
 
 namespace GDNET.Client.Encryption
 {
@@ -8,9 +6,9 @@ namespace GDNET.Client.Encryption
     {
         public static string Cipher(string text, int key)
         {
-            byte[] result = new byte[text.Length];
- 
-            for (int c = 0; c < text.Length; c++)
+            var result = new byte[text.Length];
+
+            for (var c = 0; c < text.Length; c++)
                 result[c] = (byte)((uint)text[c] ^ key);
 
             return Encoding.UTF8.GetString(result);

@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Net.Http;
-using System.Threading.Tasks;
 using GDNET.Extensions.Attributes;
 using GDNET.Extensions.Serialization;
 using GDNET.Server.IO.Net;
@@ -19,25 +18,25 @@ namespace GDNET.Server
         public string Username { get; set; }
 
         /// <summary>
-        /// The user ID of the account. Not to be confused with <see cref="AccountID"/>.
+        /// The user ID of the account. Not to be confused with <see cref="AccountId" />.
         /// </summary>
         [GdProperty(2)]
-        public int UserID { get; set; }
+        public int UserId { get; set; }
 
         /// <summary>
-        /// The account ID belonging to the account. Not to be confused with <see cref="UserID"/>
+        /// The account ID belonging to the account. Not to be confused with <see cref="UserId" />
         /// </summary>
         [GdProperty(16)]
-        public int AccountID { get; set; }
+        public int AccountId { get; set; }
 
         /// <summary>
-        /// The amount of secret coins the account has. Not to be confused with <see cref="UserCoins"/>
+        /// The amount of secret coins the account has. Not to be confused with <see cref="UserCoins" />
         /// </summary>
         [GdProperty(13)]
         public int SecretCoins { get; set; }
 
         /// <summary>
-        /// The amount of user coins the account has. Not to be confused with <see cref="SecretCoins"/>
+        /// The amount of user coins the account has. Not to be confused with <see cref="SecretCoins" />
         /// </summary>
         [GdProperty(17)]
         public int UserCoins { get; set; }
@@ -100,15 +99,15 @@ namespace GDNET.Server
         /// <summary>
         /// Gets an account from the servers.
         /// </summary>
-        /// <param name="userID">The account ID of the user.</param>
+        /// <param name="userId">The account ID of the user.</param>
         /// <returns>An account.</returns>
-        public static Account Get(int userID) =>
+        public static Account Get(int userId) =>
             RobtopAnalyzer.DeserializeObject<Account>(WebRequestClient.SendRequest(new WebRequest
             {
                 Url = "http://boomlings.com/database/getGJUserInfo20.php",
                 Content = new FormUrlEncodedContent(new Dictionary<string, string>
                 {
-                    { "targetAccountID", userID.ToString() },
+                    { "targetAccountID", userId.ToString() },
                     { "secret", "Wmfd2893gb7" }
                 })
             }));
@@ -116,19 +115,18 @@ namespace GDNET.Server
         /// <summary>
         /// Gets an account from the servers.
         /// </summary>
-        /// <param name="userID">The account ID of the user.</param>
+        /// <param name="userId">The account ID of the user.</param>
         /// <returns>An account.</returns>
-        public static string GetString(int userID) =>
+        public static string GetString(int userId) =>
             WebRequestClient.SendRequest(new WebRequest
             {
                 Url = "http://boomlings.com/database/getGJUserInfo20.php",
                 Content = new FormUrlEncodedContent(new Dictionary<string, string>
                 {
-                    { "targetAccountID", userID.ToString() },
+                    { "targetAccountID", userId.ToString() },
                     { "secret", "Wmfd2893gb7" }
                 })
             });
-
         #endregion
     }
 

@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 namespace GDNET.Extensions
 {
-    public static class IEnumerableExtensions
-    {        
+    public static class EnumerableExtensions
+    {
         /// <summary>
         /// Performs an action on all the items in an IEnumerable collection.
         /// </summary>

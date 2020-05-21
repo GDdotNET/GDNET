@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 using GDNET.Extensions.Serialization;
 using GDNET.Server.IO.Net;
 
@@ -19,14 +16,14 @@ namespace GDNET.Server
         public string Password { get; set; }
 
         /// <summary>
-        /// A method to login to an account, creating a <see cref="UserAccount"/> object.
+        /// A method to login to an account, creating a <see cref="UserAccount" /> object.
         /// </summary>
         /// <param name="username">The username.</param>
         /// <param name="password">The password</param>
         /// <returns>A user account, if successful.</returns>
         public static UserAccount Login(string username, string password)
         {
-            string response = WebRequestClient.SendRequest(new WebRequest
+            var response = WebRequestClient.SendRequest(new WebRequest
             {
                 Url = @"http://boomlings.com/database/accounts/loginGJAccount.php",
                 Content = new FormUrlEncodedContent(new Dictionary<string, string>

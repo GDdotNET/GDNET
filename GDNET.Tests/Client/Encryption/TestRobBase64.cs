@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.IO.Compression;
 using System.Text;
 using GDNET.Client.Encryption;
 using GDNET.Client.IO;
@@ -26,14 +24,15 @@ namespace GDNET.Tests.Client.Encryption
             Console.WriteLine(xor);
             Assert.AreEqual(original, cipher);
         }
-        
+
         [Test]
         public void TestRobBase64Decryption()
         {
             var b64 = Base64.Encode("If this text is readable then the test has succeeded!");
             var encoded = Xor.Cipher(b64, key);
-            
-            Assert.AreEqual("If this text is readable then the test has succeeded!", RobBase64.Decode(encoded, key), "No u");
+
+            Assert.AreEqual("If this text is readable then the test has succeeded!", RobBase64.Decode(encoded, key),
+                "No u");
         }
 
         [Test]

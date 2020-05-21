@@ -6,10 +6,10 @@ namespace GDNET.Client.Objects.Special
     /// <summary>
     /// A text object.
     /// </summary>
-    [LevelObject("914")]   
-    public class TextObject : Object
+    [LevelObject("914")]
+    public abstract class TextObject : Object
     {
-        private string _text;
+        private string text;
 
         /// <summary>
         /// The text belonging to this object.
@@ -17,8 +17,8 @@ namespace GDNET.Client.Objects.Special
         [LevelObject("31")]
         public string Text
         {
-            get => _text;
-            set => _text = Base64.Decode(value);
+            get => text;
+            set => text = Base64.Decode(value);
         }
     }
 }

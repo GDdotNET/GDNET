@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace GDNET.Client.Objects
+﻿namespace GDNET.Client.Objects
 {
     /// <summary>
-    /// A trigger. In-game, this is what makes things move and such.s
+    /// A trigger. In-game, this is what makes things move and such.
     /// </summary>
     public class Trigger : Object
     {
@@ -13,6 +9,5 @@ namespace GDNET.Client.Objects
 
     public enum TriggerIds
     {
-
     }
 }

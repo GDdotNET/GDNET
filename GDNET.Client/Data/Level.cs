@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using GDNET.Client.Encryption;
-using GDNET.Client.IO.Saves;
+using GDNET.Client.IO;
 using Object = GDNET.Client.Objects.Object;
 
 namespace GDNET.Client.Data
@@ -15,30 +14,31 @@ namespace GDNET.Client.Data
     public class Level
     {
         /// <summary>
-        /// The level string.
-        /// </summary>
-        public string LevelString;
-
-        /// <summary>
-        /// An inherited <see cref="LocalLevel"/>.
-        /// </summary>
-        public LocalLevel LocalLevel;
-
-        /// <summary>
         /// A parsed list of level objects.
         /// </summary>
-        public List<Object> LevelObjects = new List<Object>();
+        public readonly List<Object> LevelObjects = new List<Object>();
+
+        /// <summary>
+        /// The level string.
+        /// </summary>
+        public readonly string LevelString;
+
+        /// <summary>
+        /// An inherited <see cref="LocalLevel" />.
+        /// </summary>
+        public LocalLevel LocalLevel;
 
         public Level(string encodedLevelString)
         {
             LevelString = DecompressLevel(encodedLevelString);
             ParseObjects();
         }
+
         public Level(LocalLevel level)
         {
             LocalLevel = level;
             LevelString = DecompressLevel(level.LevelString);
-            
+
             ParseObjects();
         }
 
@@ -52,7 +52,7 @@ namespace GDNET.Client.Data
         {
             
         }*/
-        
+
         private void ParseObjects()
         {
             var objs = LevelString.Split(';');
@@ -67,11 +67,12 @@ namespace GDNET.Client.Data
         /// <summary>
         /// A way to load a level.
         /// </summary>
-        /// <param name="localLevel">Loads over a <see cref="LocalLevel"/> instance.</param>
+        /// <param name="localLevel">Loads over a <see cref="LocalLevel" /> instance.</param>
         /// <returns>A parsed level.</returns>
         public static Level Load(LocalLevel localLevel)
         {
-            Level level = new Level(localLevel);
+            var level = new Level(localLevel);
+
             return level;
         }
 
@@ -82,7 +83,8 @@ namespace GDNET.Client.Data
         /// <returns>A parsed level.</returns>
         public static Level Load(string encodedLevelString)
         {
-            Level level = new Level(encodedLevelString);
+            var level = new Level(encodedLevelString);
+
             return level;
         }
 
@@ -96,7 +98,7 @@ namespace GDNET.Client.Data
             if (!level.LevelString.StartsWith("H4sIAAAAAAAA"))
                 throw new ArgumentException("The provided level string is invalid.");
 
-            return Encoding.ASCII.GetString(LocalLevelManager.Decompress(Base64.DecodeToBytes(level.LevelString)));
+            return Encoding.ASCII.GetString(GameManager.Decompress(Base64.DecodeToBytes(level.LevelString)));
         }
 
         /// <summary>
@@ -109,7 +111,7 @@ namespace GDNET.Client.Data
             if (!level.StartsWith("H4sIAAAAAAAA"))
                 throw new ArgumentException("The provided level string is invalid.");
 
-            return Encoding.ASCII.GetString(LocalLevelManager.Decompress(Base64.DecodeToBytes(level)));
+            return Encoding.ASCII.GetString(GameManager.Decompress(Base64.DecodeToBytes(level)));
         }
         #endregion
     }

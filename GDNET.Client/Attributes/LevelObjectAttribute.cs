@@ -6,7 +6,7 @@ namespace GDNET.Client.Attributes
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Class)]
     public class LevelObjectAttribute : Attribute
     {
-        public string Id;
+        public readonly string Id;
 
         public LevelObjectAttribute([NotNull] string objId = "1")
         {

@@ -6,7 +6,7 @@ namespace GDNET.Extensions.Attributes
     [AttributeUsage(AttributeTargets.Property)]
     public class GdProperty : Attribute
     {
-        public int Key;
+        public readonly int Key;
 
         public GdProperty([NotNull] int gdId = 0)
         {

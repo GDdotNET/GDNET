@@ -10,8 +10,8 @@ namespace GDNET.Client.Encryption
     /// </summary>
     public class Base64
     {
-        private string text;
         private bool encoded;
+        private string text;
 
         public Base64(string newText)
         {
@@ -40,6 +40,7 @@ namespace GDNET.Client.Encryption
                 throw new InvalidOperationException("Cannot encode an already encoded string");
 
             encoded = true;
+
             return text;
         }
 
@@ -55,6 +56,7 @@ namespace GDNET.Client.Encryption
                 throw new InvalidOperationException("Cannot decode an already decoded string");
 
             encoded = false;
+
             return text;
         }
 
