@@ -2,10 +2,20 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Title>GDNET Client</Title>
+    <Authors>GDNET</Authors>
+    <RepositoryUrl>https://github.com/GDdotNET/GDNET</RepositoryUrl>
+    <RepositoryType>Github</RepositoryType>
+    <PackageTags>GD GDNET GMD Geometry Dash</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GDNET.Extensions\GDNET.Extensions.csproj" />
   </ItemGroup>
 
 </Project>

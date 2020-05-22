@@ -2,6 +2,13 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Title>GDNET Server</Title>
+    <Authors>GDNET</Authors>
+    <PackageLicenseUrl></PackageLicenseUrl>
+    <RepositoryUrl>https://github.com/GDdotNET/GDNET</RepositoryUrl>
+    <RepositoryType>Github</RepositoryType>
+    <PackageTags>GD GDNET GMD Geometry Dash</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>

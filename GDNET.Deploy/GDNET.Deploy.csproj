@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.0</TargetFramework>
+        <OutputType>Exe</OutputType>
+        <PlatformTarget>AnyCPU</PlatformTarget>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="NUnit" Version="3.12.0" />
+        <PackageReference Include="ppy.osu.Framework" Version="2019.1108.0" />
+        <PackageReference Include="ppy.squirrel.windows" Version="1.9.0.4" />
+        <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0-preview2.19523.17" />
+        <PackageReference Include="System.Management.Automation.dll" Version="10.0.10586" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Update="tools\editbin.exe">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Update="tools\link.exe">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Update="tools\rcedit-x64.exe">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+
+</Project>
