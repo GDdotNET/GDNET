@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace GDNET.Deploy
 {
-    public class GithubRelease
+    public class GitHubRelease
     {
         [JsonProperty(@"id")]
         public int Id;

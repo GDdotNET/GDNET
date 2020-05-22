@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace GDNET.Deploy
 {
-    public class GithubMinifiedPullRequest
+    public class GitHubMinifiedPullRequest
     {
         [JsonProperty(@"merged_at", NullValueHandling = NullValueHandling.Ignore)]
         public DateTime MergedAt;
@@ -12,13 +12,13 @@ namespace GDNET.Deploy
         public string Title;
 
         [JsonProperty(@"user")]
-        public GithubUser User;
+        public GitHubUser User;
 
         [JsonProperty(@"number")]
         public int Number;
     }
 
-    public class GithubPullRequest : GithubMinifiedPullRequest
+    public class GitHubPullRequest : GitHubMinifiedPullRequest
     {
         [JsonProperty(@"merged")]
         public bool Merged;

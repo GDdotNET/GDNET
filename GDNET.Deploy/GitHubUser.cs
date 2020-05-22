@@ -2,7 +2,7 @@
 
 namespace GDNET.Deploy
 {
-    public class GithubUser
+    public class GitHubUser
     {
         [JsonProperty(@"login")]
         public string Name;

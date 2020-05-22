@@ -53,7 +53,7 @@ namespace GDNET.Deploy
                 Directory.CreateDirectory(releases_folder);
             }
             
-            GithubRelease lastRelease = null;
+            GitHubRelease lastRelease = null;
             
             if (CanGitHub)
             {
@@ -223,29 +223,29 @@ namespace GDNET.Deploy
         
         private static bool CanGitHub => !string.IsNullOrEmpty(GitHubAccessToken);
         
-        private static GithubRelease GetLastGithubRelease()
+        private static GitHubRelease GetLastGithubRelease()
         {
-            var req = new JsonWebRequest<List<GithubRelease>>($"{GitHubApiEndpoint}releases");
+            var req = new JsonWebRequest<List<GitHubRelease>>($"{GitHubApiEndpoint}releases");
             req.AuthenticatedBlockingPerform();
             return req.ResponseObject.FirstOrDefault();
         }
         
-        private static List<GithubPullRequest> GetPullRequests()
+        private static List<GitHubPullRequest> GetPullRequests()
         {
             // Gets the last release
             var previousVersion = GetLastGithubRelease();
-            var reqMinified = new JsonWebRequest<List<GithubMinifiedPullRequest>>($"{GitHubApiEndpoint}pulls?state=closed");
+            var reqMinified = new JsonWebRequest<List<GitHubMinifiedPullRequest>>($"{GitHubApiEndpoint}pulls?state=closed");
             reqMinified.AuthenticatedBlockingPerform();
 
-            List<GithubMinifiedPullRequest> minifiedPullRequests = reqMinified.ResponseObject;
-            List<GithubPullRequest> requests = new List<GithubPullRequest>();
+            List<GitHubMinifiedPullRequest> minifiedPullRequests = reqMinified.ResponseObject;
+            List<GitHubPullRequest> requests = new List<GitHubPullRequest>();
 
             foreach (var pr in minifiedPullRequests)
             {
                 // We want to ignore all previous pr's from the last release
                 if (pr.MergedAt < previousVersion.PublishedAt) continue;
                 
-                var req = new JsonWebRequest<GithubPullRequest>($"{GitHubApiEndpoint}pulls/{pr.Number}");
+                var req = new JsonWebRequest<GitHubPullRequest>($"{GitHubApiEndpoint}pulls/{pr.Number}");
                 req.AuthenticatedBlockingPerform();
                 
                 requests.Add(req.ResponseObject);
@@ -262,12 +262,12 @@ namespace GDNET.Deploy
             
             Write("Publishing to GitHub...");
             
-            var req = new JsonWebRequest<GithubRelease>($"{GitHubApiEndpoint}releases")
+            var req = new JsonWebRequest<GitHubRelease>($"{GitHubApiEndpoint}releases")
             {
                 Method = HttpMethod.Post,
             };
 
-            GithubRelease targetRelease = GetLastGithubRelease();
+            GitHubRelease targetRelease = GetLastGithubRelease();
             
             if (targetRelease == null || targetRelease.TagName != version)
             {
@@ -280,7 +280,7 @@ namespace GDNET.Deploy
                 // Adds every pull requests after the last release
                 requests.ForEach(pr => { body += $"- {pr.Title} | [{pr.User.Name}]({pr.User.Link})\r\n"; });
                 
-                req.AddRaw(JsonConvert.SerializeObject(new GithubRelease
+                req.AddRaw(JsonConvert.SerializeObject(new GitHubRelease
                 {
                     Name = $"{GitHubRepoName} v{version}",
                     TagName = version,
@@ -347,7 +347,7 @@ namespace GDNET.Deploy
             req.Perform();
         }
         
-        private static List<GithubPullRequest> pullRequests;
+        private static List<GitHubPullRequest> pullRequests;
         
         private static void OpenGitHubReleasePage() => Process.Start(new ProcessStartInfo
         {
@@ -359,12 +359,12 @@ namespace GDNET.Deploy
         /// Download assets from a previous release into the releases folder.
         /// </summary>
         /// <param name="release"></param>
-        private static void GetAssetsFromRelease(GithubRelease release)
+        private static void GetAssetsFromRelease(GitHubRelease release)
         {
             if (!CanGitHub) return;
 
             //there's a previous release for this project.
-            var assetReq = new JsonWebRequest<List<GithubObject>>($"{GitHubApiEndpoint}releases/{release.Id}/assets");
+            var assetReq = new JsonWebRequest<List<GitHubObject>>($"{GitHubApiEndpoint}releases/{release.Id}/assets");
             assetReq.AuthenticatedBlockingPerform();
             var assets = assetReq.ResponseObject;
 
