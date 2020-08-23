@@ -8,7 +8,7 @@ namespace GDNET.Tests.Server.Objects
     {
         public void TestLogin()
         {
-            var myAccount = UserAccount.Login(ConfigurationManager.AppSettings["Username"],
+            var myAccount = Account.Login(ConfigurationManager.AppSettings["Username"],
                 ConfigurationManager.AppSettings["Username"]);
 
             Assert.AreEqual(myAccount.Username, ConfigurationManager.AppSettings["Username"],

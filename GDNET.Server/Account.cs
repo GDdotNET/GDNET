@@ -1,142 +1,42 @@
 ﻿using System.Collections.Generic;
 using System.Net.Http;
-using GDNET.Extensions.Attributes;
 using GDNET.Extensions.Serialization;
 using GDNET.Server.IO.Net;
 
 namespace GDNET.Server
 {
     /// <summary>
-    /// An account from the servers.
+    /// Similar to an account, but uses a login rather than search.
     /// </summary>
-    public class Account
+    public class UserAccount : User
     {
         /// <summary>
-        /// The username of the account.
+        /// The password of the account.
         /// </summary>
-        [GdProperty(1)]
-        public string Username { get; set; }
+        public string Password { get; set; }
 
         /// <summary>
-        /// The user ID of the account. Not to be confused with <see cref="AccountId" />.
+        /// A method to login to an account, creating a <see cref="UserAccount" /> object.
         /// </summary>
-        [GdProperty(2)]
-        public int UserId { get; set; }
-
-        /// <summary>
-        /// The account ID belonging to the account. Not to be confused with <see cref="UserId" />
-        /// </summary>
-        [GdProperty(16)]
-        public int AccountId { get; set; }
-
-        /// <summary>
-        /// The amount of secret coins the account has. Not to be confused with <see cref="UserCoins" />
-        /// </summary>
-        [GdProperty(13)]
-        public int SecretCoins { get; set; }
-
-        /// <summary>
-        /// The amount of user coins the account has. Not to be confused with <see cref="SecretCoins" />
-        /// </summary>
-        [GdProperty(17)]
-        public int UserCoins { get; set; }
-
-        /// <summary>
-        /// The moderator badge of the account, if any.
-        /// </summary>
-        [GdProperty(49)]
-        public ModeratorType Badge { get; set; }
-
-        /// <summary>
-        /// The current cube the account has.
-        /// </summary>
-        [GdProperty(21)]
-        public int Cube { get; set; }
-
-        /// <summary>
-        /// The current ship the account has.
-        /// </summary>
-        [GdProperty(22)]
-        public int Ship { get; set; }
-
-        /// <summary>
-        /// The current ball the account has.
-        /// </summary>
-        [GdProperty(23)]
-        public int Ball { get; set; }
-
-        /// <summary>
-        /// The current ufo the account has.
-        /// </summary>
-        [GdProperty(24)]
-        public int Ufo { get; set; }
-
-        /// <summary>
-        /// The current wave the account has.
-        /// </summary>
-        [GdProperty(25)]
-        public int Wave { get; set; }
-
-        /// <summary>
-        /// The current robot the account has.
-        /// </summary>
-        [GdProperty(26)]
-        public int Robot { get; set; }
-
-        /// <summary>
-        /// The current spider the account has.
-        /// </summary>
-        [GdProperty(43)]
-        public int Spider { get; set; }
-
-        /// <summary>
-        /// Whether the user has glow or not.
-        /// </summary>
-        [GdProperty(28)]
-        public bool Glow { get; set; }
-
-        #region Static Methods
-        /// <summary>
-        /// Gets an account from the servers.
-        /// </summary>
-        /// <param name="userId">The account ID of the user.</param>
-        /// <returns>An account.</returns>
-        public static Account Get(int userId) =>
-            RobtopAnalyzer.DeserializeObject<Account>(WebRequestClient.SendRequest(new WebRequest
+        /// <param name="username">The username.</param>
+        /// <param name="password">The password</param>
+        /// <returns>A user account, if successful.</returns>
+        public static UserAccount Login(string username, string password)
+        {
+            var response = WebRequestClient.SendRequest(new WebRequest
             {
-                Url = "http://boomlings.com/database/getGJUserInfo20.php",
+                Url = @"http://boomlings.com/database/accounts/loginGJAccount.php",
                 Content = new FormUrlEncodedContent(new Dictionary<string, string>
                 {
-                    { "targetAccountID", userId.ToString() },
-                    { "secret", "Wmfd2893gb7" }
-                })
-            }));
-
-        /// <summary>
-        /// Gets an account from the servers.
-        /// </summary>
-        /// <param name="userId">The account ID of the user.</param>
-        /// <returns>An account.</returns>
-        public static string GetString(int userId) =>
-            WebRequestClient.SendRequest(new WebRequest
-            {
-                Url = "http://boomlings.com/database/getGJUserInfo20.php",
-                Content = new FormUrlEncodedContent(new Dictionary<string, string>
-                {
-                    { "targetAccountID", userId.ToString() },
-                    { "secret", "Wmfd2893gb7" }
-                })
+                    { "userName", username },
+                    { "password", password },
+                    { "secret", "Wmfv3899gc9" },
+                    { "udid", "GDNET" }
+                }),
+                Method = HttpMethod.Post
             });
-        #endregion
-    }
 
-    /// <summary>
-    /// An enum denoting moderator types.
-    /// </summary>
-    public enum ModeratorType
-    {
-        None,
-        Normal,
-        Elder
+            return RobtopAnalyzer.DeserializeObject<UserAccount>(GetString(int.Parse(response.Split(',')[0])));
+        }
     }
 }

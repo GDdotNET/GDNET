@@ -8,7 +8,7 @@ namespace GDNET.Tests.Server.Objects
         [Test]
         public void TestRyuuhouAccount()
         {
-            var acc = Account.Get(7361923);
+            var acc = User.Get(7361923);
 
             Assert.AreEqual(acc.Username, "Mikotawa", "Usernames are not the same.");
         }
@@ -16,7 +16,7 @@ namespace GDNET.Tests.Server.Objects
         [Test]
         public void TestShaggy23Account()
         {
-            var acc = Account.Get(2888);
+            var acc = User.Get(2888);
 
             Assert.AreEqual(acc.Username, "shaggy23", "Usernames are not the same.");
             Assert.AreEqual(acc.Badge, ModeratorType.Elder, "uh oh brothers.");
