@@ -1,0 +1,41 @@
+version: 2
+updates:
+- package-ecosystem: nuget
+  directory: "/"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: ppy.osu.Framework
+    versions:
+    - 2021.128.0
+    - 2021.204.0
+    - 2021.215.0
+    - 2021.219.1
+    - 2021.222.0
+    - 2021.225.0
+    - 2021.226.0
+    - 2021.302.0
+    - 2021.309.0
+    - 2021.317.0
+    - 2021.323.0
+    - 2021.329.0
+    - 2021.330.0
+    - 2021.402.0
+    - 2021.407.0
+    - 2021.410.0
+    - 2021.413.0
+    - 2021.415.0
+    - 2021.416.0
+    - 2021.419.0
+    - 2021.422.0
+    - 2021.422.1
+    - 2021.424.1
+  - dependency-name: Microsoft.NET.Test.Sdk
+    versions:
+    - 16.8.3
+    - 16.9.1
+  - dependency-name: nunit
+    versions:
+    - 3.13.0
+    - 3.13.1
